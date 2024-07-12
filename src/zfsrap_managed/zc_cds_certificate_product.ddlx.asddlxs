@@ -1,0 +1,73 @@
+@Metadata.layer: #CUSTOMER
+@UI: { headerInfo: {
+    typeName: 'Certificado',
+    typeNamePlural: 'Certificados',
+    imageUrl: 'Icon',
+    title: {
+    type: #STANDARD,
+    label: 'Certificado',
+    value: 'CertificateUuid' } } }
+annotate entity ZC_CDS_CERTIFICATE_PRODUCT with
+{
+  @UI.facet: [{
+      purpose: #HEADER,
+      label: 'Informações Técnicas',
+      type: #FIELDGROUP_REFERENCE,
+      importance: #HIGH,
+      targetQualifier: 'HeaderData'},
+      { id: 'Certificate',
+        purpose: #STANDARD,
+        type: #IDENTIFICATION_REFERENCE,
+        label: 'Gerenciamento do Certificado',
+        position: 10 },
+        { purpose: #STANDARD,
+          type: #FIELDGROUP_REFERENCE,
+          importance: #HIGH,
+          position: 20,
+          targetQualifier: 'Detail',
+          label: 'Detalhes'  },
+        { id: 'CertificateState',
+          purpose: #STANDARD,
+          type: #LINEITEM_REFERENCE,
+          label: 'Modificações Status',
+          position: 20,
+          targetElement: '_Stats' }]
+
+  @UI.hidden: true
+  CertificateUuid;
+  @UI.selectionField: [{
+  position: 10
+  }]
+  @UI.lineItem: [{ position: 10 }]
+  @UI.identification: [ { position: 10 } ]
+  @EndUserText.label: 'Material'
+  Matnr;
+  @UI.selectionField: [{
+  position: 20
+  }]
+  @UI.lineItem: [{ position: 20 }]
+  @UI.fieldGroup: [ { qualifier: 'Detail'} ]
+  @EndUserText.label: 'Descrição'
+  Description;
+
+  @UI.identification: [ { position: 20 } ]
+    @UI.fieldGroup: [ { qualifier: 'HeaderData'} ]
+  @EndUserText.label: 'Versão'
+  Version;
+  @UI.identification: [ { position: 30 } ]
+  @EndUserText.label: 'Certificado CE'
+  CertificateCe;
+  @UI.identification: [ { position: 40 } ]
+  @EndUserText.label: 'Certificado FCC'
+  CertificateFcc;
+  @UI.identification: [ { position: 50 } ]
+  @EndUserText.label: 'Certificado GS'
+  CertificateGs;
+  @UI.identification: [ { position: 60 } ]
+  @EndUserText.label: 'Certificado ISO'
+  CertificateIso;
+  @UI.identification: [ { position: 70 } ]
+  @EndUserText.label: 'Certificado TUEV'
+  CertificateTuev;
+
+}
