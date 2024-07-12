@@ -2,6 +2,7 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @Metadata.allowExtensions: true
 define root view entity ZC_CDS_CERTIFICATE_PRODUCT
+  provider contract transactional_query
   as projection on ZICDS_CERTIFICATE_PRODUCT
 {
 
@@ -15,7 +16,7 @@ define root view entity ZC_CDS_CERTIFICATE_PRODUCT
       CertificateFcc,
       CertificateIso,
       CertificateTuev,
-      LocalLastChanged,
+      LocalLastChangedAt,
       Icon,
       /* Associations */
       _Products,

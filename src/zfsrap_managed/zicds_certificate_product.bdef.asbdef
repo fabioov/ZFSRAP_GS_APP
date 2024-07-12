@@ -1,0 +1,75 @@
+managed
+implementation in class zbp_icds_certificate_product unique;
+strict ( 1 );
+with draft;
+
+define behavior for ZICDS_CERTIFICATE_PRODUCT alias Certificate
+persistent table zfsrap_t0001
+draft table zbfsrap_t0001
+lock master
+total etag LocalLastChangedAt
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+
+  field ( readonly, numbering : managed ) CertificateUuid;
+  field ( readonly ) Description, Version;
+  field ( mandatory ) Matnr;
+
+  association _Stats { create; with draft; }
+
+  draft action Edit;
+  draft action Resume;
+  draft action Activate optimized;
+  draft action Discard;
+  draft determine action Prepare;
+
+  determination setInitialValues on modify { create; }
+
+  mapping for zfsrap_t0001
+    {
+      CertificateUuid    = certificate_uuid;
+      Matnr              = matnr;
+      Version            = version;
+      CertificateCe      = certificate_ce;
+      CertificateFcc     = certificate_fcc;
+      CertificateGs      = certificate_gs;
+      CertificateIso     = certificate_iso;
+      CertificateStatus  = certificate_status;
+      CertificateTuev    = certificate_tuev;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+
+
+}
+
+define behavior for ZICDS_CERTSTATUSPRODUCT alias CertificateST
+persistent table zfsrap_t0002
+draft table zbfsrap_t0002
+lock dependent by _Certificates
+authorization dependent by _Certificates
+//etag master <field_name>
+{
+  update;
+  delete;
+
+  field ( readonly, numbering : managed ) StateUuid;
+  field ( readonly ) CertificateUuid;
+  association _Certificates { with draft; }
+
+  mapping for zfsrap_t0002
+    {
+      StateUuid          = state_uuid;
+      CertificateUuid    = certificate_uuid;
+      Matnr              = matnr;
+      Version            = version;
+      Status             = status;
+      StatusOld          = status_old;
+      LastChangedBy      = last_changed_by;
+      LastChangedAt      = last_changed_at;
+      LocalLastChangedAt = local_last_changed_at;
+    }
+}

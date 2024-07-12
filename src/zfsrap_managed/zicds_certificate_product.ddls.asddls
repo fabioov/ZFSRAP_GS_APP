@@ -1,5 +1,5 @@
 @AbapCatalog.viewEnhancementCategory: [#NONE]
-@AccessControl.authorizationCheck: #CHECK
+@AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Composite - Certificate With Product'
 @Metadata.ignorePropagatedAnnotations: true
 @ObjectModel.usageType:{
@@ -24,7 +24,7 @@ define root view entity ZICDS_CERTIFICATE_PRODUCT
       CertificateIso,
       CertificateTuev,
       @Semantics.systemDateTime.localInstanceLastChangedAt: true
-      LocalLastChanged,
+      LocalLastChangedAt,
       'sap-icon://accounting-document-verification' as Icon,
 
       /* Associations */

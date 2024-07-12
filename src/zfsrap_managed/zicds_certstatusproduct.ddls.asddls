@@ -1,5 +1,5 @@
 @AbapCatalog.viewEnhancementCategory: [#NONE]
-@AccessControl.authorizationCheck: #CHECK
+@AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Composite - Cert. Status With Product'
 @Metadata.ignorePropagatedAnnotations: true
 @ObjectModel.usageType:{
